@@ -119,4 +119,6 @@ ENTRYPOINT ["java", "-jar", "myapp.jar"]
 
 Defines the default command to run the app when the container will start
 
+### 1-5 Why do we need a reverse proxy?
 
+A reverse proxy sits in front of our backend api and forwards incoming HTTP requests to the appropriate internal service
