@@ -12,4 +12,6 @@ Secured variables protect sensitive information like passwords, tokens, and keys
 
 We use `needs: build-and-test-backend` to be sure that this job runs only after the backend tests pass. This prevents building and pushing Docker images if tests fail, because we will save time and ressources and ensure that only verified code is published.
 
-###
+### 2-4 For what purpose do we need to push docker images?
+
+We push Docker images to share and distribute applications easily, like the first part of this tp. As we said before it ensures consistency across environments, enables automated deployments, also manages versioning. This makes applications portable, reliable, and ready for continuous delivery.

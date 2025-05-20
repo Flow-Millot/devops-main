@@ -40,7 +40,7 @@ jobs:
       - name: Build and push backend image
         uses: docker/build-push-action@v6
         with:
-          context: ./simpleapi               # path to backend Dockerfile
+          context: ./tp01/simpleapi               # path to backend Dockerfile
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops-simple-api:latest
           push: ${{ github.ref == 'refs/heads/main' }}   # push only if on main branch
 
@@ -54,6 +54,6 @@ jobs:
       - name: Build and push httpd image
         uses: docker/build-push-action@v6
         with:
-          context: ./http-server             # path to httpd Dockerfile
+          context: ./tp01/http-server             # path to httpd Dockerfile
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops-httpd:latest
           push: ${{ github.ref == 'refs/heads/main' }}
