@@ -1,5 +1,7 @@
 name: Docker Build and Push
 
+#This workflow builds and pushes Docker images to Docker Hub after the "CI and Sonar" workflow is completed
+#Only the main branch is considered
 on:
   workflow_run:
     workflows: ["CI and Sonar"]
@@ -10,31 +12,37 @@ on:
 
 jobs:
   build-and-push-docker-image:
+    #Same ubuntu version as the CI and Sonar workflow
     runs-on: ubuntu-24.04
 
     steps:
+      #Checkout the repository code
       - uses: actions/checkout@v4
 
+      #Log in to Docker Hub using credentials stored in GitHub Secrets
       - name: Log in to DockerHub
         run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
+      #Build and push the backend Docker image
       - name: Build and push backend image
         uses: docker/build-push-action@v6
         with:
-          context: ./tp01/simpleapi
+          context: ./tp01/simpleapi #Path to backend Dockerfile
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops-simple-api:latest
           push: true
 
+      #Build and push the database Docker image
       - name: Build and push database image
         uses: docker/build-push-action@v6
         with:
-          context: ./tp01
+          context: ./tp01 #Path to database Dockerfile
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops-postgres:latest
           push: true
 
+      #Build and push the http server Docker image
       - name: Build and push httpd image
         uses: docker/build-push-action@v6
         with:
-          context: ./tp01/http-server
+          context: ./tp01/http-server #Path to httpd Dockerfile
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops-httpd:latest
           push: true
