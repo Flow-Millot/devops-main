@@ -47,7 +47,7 @@ jobs:
       - name: Build and push database image
         uses: docker/build-push-action@v6
         with:
-          context: ./sql_files               # path to database Dockerfile
+          context: ./             # path to database Dockerfile
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops-postgres:latest
           push: ${{ github.ref == 'refs/heads/main' }}
 
