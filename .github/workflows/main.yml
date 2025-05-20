@@ -23,7 +23,7 @@ jobs:
 
       # Build and test your application with Maven (in the good directory and without cache)
       - name: Build and test with Maven
-        working-directory: simpleapi
+        working-directory: ./tp01/simpleapi
         run: mvn clean verify
 
   build-and-push-docker-image:
