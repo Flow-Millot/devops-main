@@ -21,7 +21,39 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      #Build and test your application with Maven
+      #Build and test your application with Maven (in the good directory and without cache)
       - name: Build and test with Maven
         working-directory: simpleapi
         run: mvn clean verify
+
+  build-and-push-docker-image:
+  needs: test-backend          # wait for tests to succeed before running this job
+  runs-on: ubuntu-24.04
+
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Log in to DockerHub
+      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+    - name: Build and push backend image
+      uses: docker/build-push-action@v6
+      with:
+        context: ./simpleapi               # path to backend Dockerfile
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-api:latest
+        push: ${{ github.ref == 'refs/heads/main' }}   # push only if on main branch
+
+    - name: Build and push database image
+      uses: docker/build-push-action@v6
+      with:
+        context: ./sql_files               # path to database Dockerfile
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-postgres:latest
+        push: ${{ github.ref == 'refs/heads/main' }}
+
+    - name: Build and push httpd image
+      uses: docker/build-push-action@v6
+      with:
+        context: ./http-server             # path to httpd Dockerfile
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-httpd:latest
+        push: ${{ github.ref == 'refs/heads/main' }}
