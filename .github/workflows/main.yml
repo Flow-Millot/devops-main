@@ -24,5 +24,5 @@ jobs:
 
       #Build and test your application with Maven
       - name: Build and test with Maven
-        working-directory: tp01/simpleapi
+        working-directory: simpleapi
         run: mvn clean verify
