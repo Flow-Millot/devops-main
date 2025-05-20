@@ -10,6 +10,7 @@ Welcome to my DevOps week documentation. Below is a day-by-day (tp by tp) index 
 |-------|------------------------------------|--------------------------------|
 | TD01  | Flask App                          | No README           |
 | TP01  | Database and Backend Configuration | [TP01 README](./tp01/README.md)   |
+| TP02  | Github Actions                     | [TP02 README](./tp02/README.md)   |
 
 ---
 
