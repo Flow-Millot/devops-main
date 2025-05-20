@@ -1,0 +1,41 @@
+name: Docker Build and Push
+
+on:
+  workflow_run:
+    workflows: ["CI and Sonar"]
+    branches:
+      - main
+    types:
+      - completed
+
+jobs:
+  build-and-push-docker-image:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to DockerHub
+        run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./tp01/simpleapi
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops-simple-api:latest
+          push: true
+
+      - name: Build and push database image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./tp01
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops-postgres:latest
+          push: true
+
+      - name: Build and push httpd image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./tp01/http-server
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops-httpd:latest
+          push: true
