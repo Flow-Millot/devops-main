@@ -1,0 +1,48 @@
+services:
+  database:
+    build: ./sql_files
+    image: custom-postgres
+    container_name: my-postgres-compose
+    env_file:
+      - .env
+    volumes:
+      - /Users/florentinmillot/Library/CloudStorage/OneDrive-FondationEPF/Cours/4A/DevOps/devops-main/tp01/data-compose:/var/lib/postgresql/data
+    networks:
+      - internal
+    restart: unless-stopped
+
+  backend:
+    build: ./simpleapi
+    image: simpleapi-java
+    container_name: simpleapi-compose
+    depends_on:
+      - database
+    networks:
+      - internal
+      - public
+    env_file:
+      - .env
+    restart: on-failure:3
+
+  httpd:
+    build: ./http-server
+    image: http-server
+    container_name: http-server-compose
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - public
+    restart: no
+
+volumes:
+  postgres-data:
+
+networks:
+  internal:
+    name: internal-network
+    driver: bridge
+  public:
+    name: public-network
+    driver: bridge
