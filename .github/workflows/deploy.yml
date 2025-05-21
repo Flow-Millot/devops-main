@@ -1,0 +1,21 @@
+name: Deploy on DockerHub push
+
+on:
+  workflow_run:
+    workflows: ["Docker Build and Push"]
+    branches:
+      - main
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run Ansible Playbook for deployment
+      uses: dawidd6/action-ansible@v2
+      with:
+        playbook: ansible/playbook.yml
+        inventory: ansible/inventory.ini
+

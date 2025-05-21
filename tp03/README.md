@@ -127,10 +127,10 @@ ansible all -i ansible/inventories/setup.yml -m copy -a "src=/local/path/to/file
     roles:
     - docker                   #Run the docker role
     - env                      #Copy env file with variable to the server
-    - create_network
-    - launch_database
-    - launch_app
-    - launch_proxy
+    - create_network           #Create 2 network to separate the back and the front
+    - launch_database          #Lauch the database container to the server from the docker hub image
+    - launch_app               #Lauch the simpleapi (backend) container to the server from the docker hub image
+    - launch_proxy             #Lauch the http container to the server from the docker hub image
 ```
 
 ---
