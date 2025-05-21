@@ -1,0 +1,16 @@
+- name: Run Postgres container
+  docker_container:
+    name: postgres-container
+    image: flowmillot/tp-devops-postgres:latest
+    state: started
+    restart_policy: unless-stopped
+    networks:
+      - name: internal-network
+    env:
+      POSTGRES_USER: "usr"
+      POSTGRES_PASSWORD: "pwd"
+      POSTGRES_DB: "db"
+    #volumes:
+    #  - /Users/florentinmillot/Library/CloudStorage/OneDrive-FondationEPF/Cours/4A/DevOps/devops-main/tp01/data-compose:/var/lib/postgresql/data
+  vars:
+    ansible_python_interpreter: /usr/bin/python3

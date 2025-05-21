@@ -1,0 +1,16 @@
+- name: Run HTTPD container
+  docker_container:
+    name: http-server-container
+    image: flowmillot/tp-devops-httpd
+    state: started
+    restart_policy: no
+    #depends_on:
+    #  - backend-container
+    env:
+      BACKEND_HOST: "host.docker.internal"
+    ports:
+      - "80:80"
+    networks:
+      - name: public-network
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
