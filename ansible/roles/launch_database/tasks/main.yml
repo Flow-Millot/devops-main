@@ -1,6 +1,7 @@
 - name: Run Postgres container
   docker_container:
     name: postgres-container
+    pull: yes
     image: flowmillot/tp-devops-postgres:latest
     state: started
     restart_policy: unless-stopped

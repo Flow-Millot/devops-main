@@ -5,4 +5,4 @@
 - name: Set the env file
   copy:
     src: files/.env
-    dest: .env
+    dest: /tmp/db.env
