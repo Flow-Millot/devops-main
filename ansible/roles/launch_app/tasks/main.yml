@@ -2,7 +2,6 @@
   docker_container:
     name: backend-container
     image: flowmillot/tp-devops-simple-api:latest
-    pull: yes
     state: started
     #If the container does not exist, it will be created and started.
     #If it exists but is stopped, it will be started.
