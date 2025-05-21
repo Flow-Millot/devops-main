@@ -4,6 +4,7 @@
 
   roles:
     - docker
+    - env
     - create_network
     - launch_database
     - launch_app

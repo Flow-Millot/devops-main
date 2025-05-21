@@ -3,16 +3,16 @@
     name: backend-container
     image: flowmillot/tp-devops-simple-api:latest
     state: started
+    #If the container does not exist, it will be created and started.
+    #If it exists but is stopped, it will be started.
+    #If it is already running, no action is taken.
     restart_policy: on-failure
     restart_retries: 3
-    #depends_on:
-    #  - postgres-container
     networks:
       - name: internal-network
       - name: public-network
-    env:
-      DATABASE_URL: "jdbc:postgresql://postgres-container:5432/db"
-      DATABASE_USERNAME: "usr"
-      DATABASE_PASSWORD: "pwd"
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
+    #env:
+    #  DB_URL: "jdbc:postgresql://postgres-container:5432/db"
+    #  DB_USERNAME: "usr"
+    #  DB_PASSWORD: "pwd"
+
