@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     volumes:
-      - /Users/florentinmillot/Library/CloudStorage/OneDrive-FondationEPF/Cours/4A/DevOps/devops-main/tp01/data-compose:/var/lib/postgresql/data
+      - /devops-main/tp01/data-compose:/var/lib/postgresql/data
     networks:
       - internal
     restart: unless-stopped

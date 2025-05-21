@@ -1,4 +1,4 @@
 FROM httpd:2.4-alpine
 
-COPY dist/ /usr/local/apache2/htdocs/
+COPY /devops-main/devops-front-main/dist /usr/local/apache2/htdocs/
 COPY httpd.conf /usr/local/apache2/conf/httpd.conf
