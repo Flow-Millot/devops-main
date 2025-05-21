@@ -5,7 +5,7 @@ WORKDIR /opt/front
 COPY src/ src/
 COPY public/ public/
 COPY package.json .
-#COPY yarn.lock .
+COPY yarn.lock .
 COPY default.conf .
 COPY .env.production .
 
