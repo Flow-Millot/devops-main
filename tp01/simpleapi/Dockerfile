@@ -16,3 +16,6 @@ WORKDIR $MYAPP_HOME
 COPY --from=myapp-build $MYAPP_HOME/target/*.jar $MYAPP_HOME/myapp.jar
 
 ENTRYPOINT ["java", "-jar", "myapp.jar"]
+
+
+
