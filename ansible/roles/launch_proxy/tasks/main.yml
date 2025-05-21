@@ -10,3 +10,4 @@
       - "80:80"
     networks:
       - name: public-network
+      - name: front-network

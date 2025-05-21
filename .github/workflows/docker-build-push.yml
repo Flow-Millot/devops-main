@@ -46,3 +46,11 @@ jobs:
           context: ./tp01/http-server #Path to httpd Dockerfile
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops-httpd:latest
           push: true
+
+      #Build and push the front Docker image
+      - name: Build and push front image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./devops-front-main #Path to front Dockerfile
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/tp-devops-front:latest
+          push: true
