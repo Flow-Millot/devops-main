@@ -6,3 +6,4 @@
   copy:
     src: files/.env
     dest: /tmp/db.env
+    mode: '0644'
