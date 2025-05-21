@@ -124,6 +124,17 @@ ansible all -i ansible/inventories/setup.yml -m copy -a "src=/local/path/to/file
   gather_facts: true           #Collect system facts for use in the playbook
   become: true                 #Execute tasks with sudo (root privileges)
 
-  roles:
-    - docker                  #Call the 'docker' role to run its tasks
+    roles:
+    - docker                   #Run the docker role
+    - env                      #Copy env file with variable to the server
+    - create_network
+    - launch_database
+    - launch_app
+    - launch_proxy
 ```
+
+---
+
+You can check every main from different roles. The code is commented
+
+### 3-3 Document your docker_container tasks configuration.
