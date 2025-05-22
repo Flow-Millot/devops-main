@@ -18,11 +18,11 @@ on:
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Deploy to server
         run: ansible-playbook -i inventories/setup.yml playbook.yml --become
-        
-
 
