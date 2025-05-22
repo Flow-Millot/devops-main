@@ -23,3 +23,7 @@ Welcome to my DevOps week documentation. Below is a day-by-day (tp by tp) index 
 - Use this overview as your starting point to navigate the entire project documentation efficiently.
 
 ---
+
+## To see magical things
+
+http://florentin.millot.takima.cloud/
