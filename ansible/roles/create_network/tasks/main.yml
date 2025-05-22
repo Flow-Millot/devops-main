@@ -1,3 +1,5 @@
+#Create 3 networks: internal, public, and front
+
 - name: Create internal Docker network
   docker_network:
     name: internal-network

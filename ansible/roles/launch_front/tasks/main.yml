@@ -4,10 +4,10 @@
 
 - name: Run Front container
   docker_container:
-    name: front-container
+    name: front-container #container of the front
     image: flowmillot/tp-devops-front:latest
-    pull: yes
-    state: started
+    pull: yes #check lauch_app main.yml
+    state: started #check lauch_app main.yml
     restart_policy: no
     networks:
-      - name: front-network
+      - name: front-network #new network for the front and the http server

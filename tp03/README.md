@@ -138,3 +138,55 @@ ansible all -i ansible/inventories/setup.yml -m copy -a "src=/local/path/to/file
 You can check every main from different roles. The code is commented
 
 ### 3-3 Document your docker_container tasks configuration.
+
+#### **docker**
+- [tasks/main.yml](../ansible/roles/docker/tasks/main.yml)  
+  Tasks to install Docker and related dependencies.
+
+---
+
+#### **env**
+- [tasks/main.yml](../ansible/roles/env/tasks/main.yml)  
+  Task to copy environment files or set environment variables. **COMMENTED** Doesnt work maybe because there is an autorization issue
+
+---
+
+#### **create_network**
+- [tasks/main.yml](../ansible/roles/create_network/tasks/main.yml)  
+  Tasks to create Docker networks (internal, public, front).
+
+---
+
+#### **launch_database**
+- [tasks/main.yml](../ansible/roles/launch_database/tasks/main.yml)  
+  Tasks to launch and configure the Postgres container.
+
+---
+
+#### **launch_app**
+- [tasks/main.yml](../ansible/roles/launch_app/tasks/main.yml)  
+  Tasks to launch the backend application container.
+
+---
+
+#### **launch_proxy**
+- [tasks/main.yml](../ansible/roles/launch_proxy/tasks/main.yml)  
+  Tasks to launch the HTTPD or Nginx reverse proxy container.
+
+---
+
+##### **launch_front**
+- [tasks/main.yml](../ansible/roles/launch_front/tasks/main.yml)  
+  Tasks to launch the frontend container (static files served by Nginx).
+
+---
+
+### Is it really safe to deploy automatically every new image on the hub ? explain. What can I do to make it more secure?
+
+Automatically deploying every new image from Docker Hub is risky because it can introduce vulnerabilities, bugs, or malicious code. To make it more secure, we can do:
+
+- **Pin Specific Image Versions**: Avoid using `latest` and we can specify version
+- **Test in CI/CD**
+- **Limit Permissions**: Ensure least privilege access to pull/deploy images and hide variables
+- **Enable Image Signing**: use Docker Content Trust or Notary to verify image authenticity
+- **Rollback Mechanisms**: Ensure you can revert to a previous stable version if needed

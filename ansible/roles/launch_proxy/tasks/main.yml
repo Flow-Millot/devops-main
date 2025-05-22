@@ -1,14 +1,14 @@
 - name: Run HTTPD container
   docker_container:
-    name: http-server-container
+    name: http-server-container #container of the http server launch
     image: flowmillot/tp-devops-httpd:latest
-    pull: yes
-    state: started
+    pull: yes #check lauch_app main.yml
+    state: started #check lauch_app main.yml
     restart_policy: no
     env:
       BACKEND_HOST: backend-container
     ports:
-      - "80:80"
+      - "80:80"  #only one external port
     networks:
       - name: public-network
       - name: front-network

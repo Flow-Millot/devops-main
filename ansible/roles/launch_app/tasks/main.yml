@@ -2,13 +2,14 @@
   docker_container:
     name: backend-container
     image: flowmillot/tp-devops-simple-api:latest
-    pull: yes
+    pull: yes #get the latest image and forcing pull it into the server
     state: started
     #If the container does not exist, it will be created and started.
     #If it exists but is stopped, it will be started.
     #If it is already running, no action is taken.
     restart_policy: on-failure
     restart_retries: 3
+    #.env file didn't properly set before during the copy
     env:
       DB_NAME: db
       USERNAME: usr
