@@ -1,0 +1,22 @@
+name: Deploy
+
+#This workflow depploys after the "Docker Build and Push" workflow is completed
+#Only the main branch is considered
+# on:
+#   workflow_run:
+#     workflows: ["Docker Build and Push"]
+#     branches:
+#       - main
+#     types:
+#       - completed
+
+jobs:
+  deploy:
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to server
+        run: ansible-playbook -i inventories/setup.yml playbook.yml --become
+        
+
+
