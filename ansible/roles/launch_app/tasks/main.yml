@@ -10,9 +10,10 @@
     restart_policy: on-failure
     restart_retries: 3
     env:
-      POSTGRES_USER: usr
-      POSTGRES_PASSWORD: pwd
-      POSTGRES_DB: db
+      DB_NAME: db
+      USERNAME: usr
+      PASSWORD: pwd
+      DB_HOST: postgres-container
     networks:
       - name: internal-network
       - name: public-network
