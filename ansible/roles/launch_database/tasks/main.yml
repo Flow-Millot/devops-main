@@ -2,6 +2,7 @@
   docker_container:
     name: postgres-container
     image: flowmillot/tp-devops-postgres:latest
+    pull: yes
     state: started
     restart_policy: unless-stopped
     networks:

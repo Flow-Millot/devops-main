@@ -2,6 +2,7 @@
   docker_container:
     name: http-server-container
     image: flowmillot/tp-devops-httpd:latest
+    pull: yes
     state: started
     restart_policy: no
     env:
