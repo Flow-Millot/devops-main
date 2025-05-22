@@ -1,0 +1,14 @@
+- name: Run Postgres container
+  docker_container:
+    name: postgres-container #container of the database
+    image: flowmillot/tp-devops-postgres:latest
+    pull: yes #check lauch_app main.yml
+    state: started #check lauch_app main.yml
+    restart_policy: unless-stopped
+    #.env file didn't properly set before during the copy
+    env:
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: pwd
+      POSTGRES_DB: db
+    networks:
+      - name: internal-network

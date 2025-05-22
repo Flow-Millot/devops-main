@@ -1,0 +1,20 @@
+#Create 3 networks: internal, public, and front
+
+- name: Create internal Docker network
+  docker_network:
+    name: internal-network
+    driver: bridge
+    state: present
+
+- name: Create public Docker network
+  docker_network:
+    name: public-network
+    driver: bridge
+    state: present
+
+- name: Create front Docker network
+  docker_network:
+    name: front-network
+    driver: bridge
+    state: present
+

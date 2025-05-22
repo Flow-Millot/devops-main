@@ -1,0 +1,12 @@
+- hosts: all
+  become: true
+  gather_facts: true
+
+  roles:
+    - docker
+    #- env #does not work maybe because of authorization/access issue
+    - create_network
+    - launch_database
+    - launch_app
+    - launch_proxy
+    - launch_front

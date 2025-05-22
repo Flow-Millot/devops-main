@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/env
+
+#DOES NOT WORK : maybe autorization/access issue
+
+- name: Set the env file
+  copy:
+    src: ./ansible/roles/env/files/.env
+    dest: /tmp/db.env
+    mode: '0644'

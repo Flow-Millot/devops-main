@@ -1,0 +1,57 @@
+---
+# roles/docker/tasks/main.yml
+
+- name: Install required packages
+  apt: #List of packages to install through the APT package manager
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+      - python3-venv
+    state: latest
+    update_cache: yes
+
+#Add Docker GPG key and repository
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+
+# Add Docker APT repository
+- name: Add Docker APT repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_facts['distribution_release'] }} stable"
+    state: present
+    update_cache: yes #Update the APT cache after adding the repository
+
+#Install Docker
+- name: Install Docker
+  apt:
+    name: docker-ce
+    state: present
+
+#Install Docker Compose
+- name: Install Python3 and pip3
+  apt:
+    name:
+      - python3
+      - python3-pip
+    state: present
+
+#Install Docker Compose using pip3
+- name: Create a virtual environment for Docker SDK
+  command: python3 -m venv /opt/docker_venv
+  args:
+    creates: /opt/docker_venv
+
+#Install Docker SDK for Python in the virtual environment
+- name: Install Docker SDK for Python in virtual environment
+  command: /opt/docker_venv/bin/pip install docker
+
+#Install Docker Compose using pip3
+- name: Make sure Docker is running
+  service:
+    name: docker
+    state: started

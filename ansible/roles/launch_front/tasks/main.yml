@@ -1,0 +1,13 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/lauch_front
+
+- name: Run Front container
+  docker_container:
+    name: front-container #container of the front
+    image: flowmillot/tp-devops-front:latest
+    pull: yes #check lauch_app main.yml
+    state: started #check lauch_app main.yml
+    restart_policy: no
+    networks:
+      - name: front-network #new network for the front and the http server
