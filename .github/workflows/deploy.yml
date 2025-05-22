@@ -31,7 +31,7 @@ jobs:
         run: ssh-keyscan -H florentin.millot.takima.cloud >> ~/.ssh/known_hosts
 
       - name: Copy env variable
-        run: scp -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ./ansible/roles/env/files/.env florentin.millot.takima.cloud:/tmp/db.env
+        run: scp -o StrictHostKeyChecking=no ./ansible/roles/env/files/.env florentin.millot.takima.cloud:/tmp/db.env
 
       - name: Deploy to server
         run: ansible-playbook -i ./ansible/inventories/setup.yml ./ansible/playbook.yml --become
