@@ -4,6 +4,6 @@
 
 - name: Set the env file
   copy:
-    src: files/.env
+    src: ./ansible/roles/env/files/.env
     dest: /tmp/db.env
     mode: '0644'
