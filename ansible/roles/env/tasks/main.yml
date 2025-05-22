@@ -4,6 +4,6 @@
 
 - name: Copy .env to remote for database
   copy:
-    src: files/.env
+    src: ${{ secrets.ENV_VARIABLES}}
     dest: /tmp/db.env
     mode: '0644'
