@@ -9,6 +9,10 @@
     #If it is already running, no action is taken.
     restart_policy: on-failure
     restart_retries: 3
+    env:
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: pwd
+      POSTGRES_DB: db
     networks:
       - name: internal-network
       - name: public-network

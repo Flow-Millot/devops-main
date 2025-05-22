@@ -5,5 +5,10 @@
     pull: yes
     state: started
     restart_policy: unless-stopped
+    env:
+      DB_NAME: db
+      USERNAME: usr
+      PASSWORD: pwd
+      DB_HOST: my-postgres-compose
     networks:
       - name: internal-network
