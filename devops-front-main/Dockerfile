@@ -14,6 +14,5 @@ RUN npm run build
 
 FROM nginx:1.15.7-alpine
 
-#COPY --from=build /opt/front/dist /usr/share/nginx/html/
-COPY --from=build /opt/front/dist /usr/local/apache2/htdocs
+COPY --from=build /opt/front/dist /usr/share/nginx/html/
 COPY --from=build /opt/front/default.conf /etc/nginx/conf.d/default.conf
