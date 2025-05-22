@@ -2,19 +2,13 @@ name: Deploy
 
 #This workflow depploys after the "Docker Build and Push" workflow is completed
 #Only the main branch is considered
-# on:
-#   workflow_run:
-#     workflows: ["Docker Build and Push"]
-#     branches:
-#       - main
-#     types:
-#       - completed
-
 on:
-  push:
+  workflow_run:
+    workflows: ["Docker Build and Push"]
     branches:
       - main
-  pull_request:
+    types:
+      - completed
 
 jobs:
   deploy:
