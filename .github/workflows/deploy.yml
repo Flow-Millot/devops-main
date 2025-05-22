@@ -23,13 +23,12 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Add SSH key to agent
-        uses: webfactory/ssh-agent@v0.8.1
+        uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Add server to known hosts
-        run: ssh-keyscan -H your.server.ip.or.hostname >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H florentin.millot.takima.cloud >> ~/.ssh/known_hosts
 
       - name: Deploy to server
         run: ansible-playbook -i ./ansible/inventories/setup.yml ./ansible/playbook.yml --become
-
